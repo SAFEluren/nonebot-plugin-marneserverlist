@@ -122,7 +122,7 @@ async def _info(event: GroupMessageEvent):
     results = await request_marneapi(group_serverid)
     result_txt = results.text
     result = json.loads(result_txt)
-    if result is None and result == '[]':
+    if result is None or result == '[]':
         await MARNE_MAIN.send('服务器未开启', reply_message=True)
         return
     server_ID = result['id']
@@ -167,7 +167,7 @@ async def _mods(event: GroupMessageEvent):
     results = await request_marneapi(group_serverid)
     result_txt = results.text
     result = json.loads(result_txt)
-    if result is None and result == '[]':
+    if result is None or result == '[]':
         await MARNE_MODS.send('服务器未开启', reply_message=True)
         return
     server_ID = result['id']
@@ -226,7 +226,7 @@ async def _players(event: GroupMessageEvent):
     results = await request_marneapi(group_serverid)
     result_txt = results.text
     result = json.loads(result_txt)
-    if result is None and result == '[]':
+    if result is None or result == '[]':
         await MARNE_PLST.send('服务器未开启', reply_message=True)
         return
     server_ID = result['id']
@@ -307,7 +307,7 @@ async def _bind(event: GroupMessageEvent, args: Message = CommandArg()):
     loguru.logger.debug(results)
     result_txt = results.text
     result = json.loads(result_txt)
-    if result is None and result == '[]':
+    if result is None or result == '[]':
         await MARNE_BIND.send('服务器未开启或服务器ID错误', reply_message=True)
         return
     serverName = result['name']
